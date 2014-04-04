@@ -83,57 +83,58 @@ object test_CIB {
                                                   //|  2))
 	mylist(1).n                               //> res9: Int = 3
 	for (k <- 0 to mylist.length-1){
-		println("CIBnew"+mylist(k).n+"-"+k+".ua\n")
-		writeUAfile(mylist(k), "CIBnew"+mylist(k).n+"-"+k+".ua")
-	}                                         //> CIBnew3-0.ua
+		println("CIB"+mylist(k).n+"-"+k+".ua\n")
+		writeUAfile(mylist(k), "CIB"+mylist(k).n+"-"+k+".ua")
+	}                                         //> CIB3-0.ua
                                                   //| 
-                                                  //| CIBnew3-1.ua
+                                                  //| CIB3-1.ua
                                                   //| 
-                                                  //| CIBnew3-2.ua
+                                                  //| CIB3-2.ua
                                                   //| 
-                                                  //| CIBnew3-3.ua
+                                                  //| CIB3-3.ua
                                                   //| 
-                                                  //| CIBnew3-4.ua
+                                                  //| CIB3-4.ua
                                                   //| 
-                                                  //| CIBnew3-5.ua
+                                                  //| CIB3-5.ua
                                                   //| 
-                                                  //| CIBnew3-6.ua
+                                                  //| CIB3-6.ua
                                                   //| 
-                                                  //| CIBnew3-7.ua
+                                                  //| CIB3-7.ua
                                                   //| 
-                                                  //| CIBnew3-8.ua
+                                                  //| CIB3-8.ua
                                                   //| 
+
 		
 		
-  //def writeUAfile(A: CIB, filename: String = "~/" + A.name + ".ua") = {
-  def writeUAfile(A: CIB, filename: String) = {
+  def writeUAfile(A: CIB, filename: String = "~/" + A.name + ".ua") = {
+  //def writeUAfile(A: CIB, filename: String) = {
     val T = A.cibtable
     val writer = new PrintWriter(new File(filename))
     writer.write("<?xml version='1.0'?>\n")
     writer.write("<algebra>\n")
-    writer.write("<basicAlgebra>\n")
-    writer.write("<algName>CIB4all-1</algName>\n")
-    writer.write("<desc></desc>\n")
-    writer.write("<cardinality>" + A.n + "</cardinality>\n")
-    writer.write("<operations>\n")
-    writer.write("<op>\n")
-    writer.write("<opSymbol>\n")
-    writer.write("<opName>g</opName>\n")
-    writer.write("<arity>2</arity>\n")
-    writer.write("</opSymbol>\n")
-    writer.write("<opTable>\n")
-    writer.write("<intArray>\n")
-    writer.write("<row r='&quot;[0]&quot;'>\n")
+    writer.write("  <basicAlgebra>\n")
+    writer.write("    <algName>"+A.name+"</algName>\n")
+    writer.write("    <desc>commutative idempotent binar</desc>\n")
+    writer.write("    <cardinality>" + A.n + "</cardinality>\n")
+    writer.write("    <operations>\n")
+    writer.write("      <op>\n")
+    writer.write("        <opSymbol>\n")
+    writer.write("          <opName>g</opName>\n")
+    writer.write("          <arity>2</arity>\n")
+    writer.write("        </opSymbol>\n")
+    writer.write("        <opTable>\n")
+    writer.write("          <intArray>\n")
     for (i <- 0 to A.n-1) {
+	    writer.write("            <row r=\"["+i+"]\">")
       for (j <- 0 to A.n-1) {
         writer.write(T(i)(j) + ", ")
       }
       writer.write("</row>\n")
     }
-    writer.write("</intArray>\n")
-    writer.write("</opTable>\n")
-    writer.write("</op>\n")
-    writer.write("</operations>\n")
+    writer.write("          </intArray>\n")
+    writer.write("        </opTable>\n")
+    writer.write("      </op>\n")
+    writer.write("  </operations>\n")
     writer.write("</basicAlgebra>\n")
     writer.write("</algebra>\n")
     writer.close()
