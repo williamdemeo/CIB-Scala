@@ -4,6 +4,7 @@ import java.io._
 object test_CIB {
 	val A = new CIB(5, List(List(2), List(1,3), List(1,0,4), List(1,0,0,0)))
                                                   //> A  : finder.CIB = List(2), List(1, 3), List(1, 0, 4), List(1, 0, 0, 0)
+                                                  
 	A.isFull                                  //> res0: Boolean = true
 	A.bin(0,0)                                //> res1: Int = 0
 	A.bin(0,1)                                //> res2: Int = 2
